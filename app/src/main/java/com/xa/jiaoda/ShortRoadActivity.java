@@ -62,7 +62,6 @@ public class ShortRoadActivity extends AppCompatActivity {
 
     MapView mMapView;
     // 获取手机外存
-    //final String extern = "http:192.168.1.107";
     final String extern
             = Environment.getExternalStorageDirectory().getPath();
     // tpk路径
@@ -88,7 +87,6 @@ public class ShortRoadActivity extends AppCompatActivity {
     boolean flag = true;
    LocationService.myBinder binder = null;
     private ArcMenu mMenu_right;
-//    private ArcMenu mMenu_left;
     private ServiceConnection conn;
     private Timer timer;
     private TimerTask task;
@@ -103,8 +101,6 @@ public class ShortRoadActivity extends AppCompatActivity {
         setContentView(R.layout.activity_short);
 
         mMenu_right = (ArcMenu) findViewById(R.id.id_menu);
-       // mMenu_left = (ArcMenu) findViewById(R.id.menu_left);
-//        mMenu_left.setVisibility(View.GONE);
         initEvent();
 
         // 实例化下拉列表
@@ -157,8 +153,6 @@ public class ShortRoadActivity extends AppCompatActivity {
 
         gLayerPos = new GraphicsLayer();
         mMapView.addLayer(gLayerPos);
-        //data = getIntent().getBooleanExtra("if_use_location",true);
-
         startLocation(data);
 
     }
@@ -188,7 +182,6 @@ public class ShortRoadActivity extends AppCompatActivity {
             @Override
             public void onClick(View view, int pos)
             {
-//                Toast.makeText(ShortRoadActivity.this, pos + ":" + view.getTag(), Toast.LENGTH_SHORT).show();
                 switch (pos) {
                     case 1:
                         getRoad(-1);
@@ -200,15 +193,8 @@ public class ShortRoadActivity extends AppCompatActivity {
                         }
                         break;
                     case 3:
-                        //Intent intent3=new Intent(ShortRoadActivity.this,HelpActivity.class);
-                        //startActivity(intent3);
                         break;
                     case 4:
-                       //new DownloadFilm("files","picture.jpg").doDownload();
-//                        DownloadFilm.downloadMap();
-//                        Intent intent = new Intent(Intent.ACTION_VIEW);
-//                        intent.setData(Uri.parse("http://www.swjtu.edu.cn/"));
-//                        startActivity(intent);
                         startActivity(new Intent(ShortRoadActivity.this, AboutActivity.class));
                         break;
                     case 5:
@@ -217,14 +203,6 @@ public class ShortRoadActivity extends AppCompatActivity {
                 }
             }
         });
-//        mMenu_left.setOnMenuItemClickListener(new ArcMenu.OnMenuItemClickListener()
-//        {
-//            @Override
-//            public void onClick(View view, int pos)
-//            {
-//                Toast.makeText(ShortRoadActivity.this, pos+":"+view.getTag(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
     }
 
     // 初始化路线和地理编码
@@ -233,19 +211,12 @@ public class ShortRoadActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             public void run() {
                 // 外存目录
-//                String locatorPath = "/ArcGIS/SWJTU/locator/locator32/v101/locator32.loc";
-//                String networkPath = "/ArcGIS/SWJTU/dataR/mydatabase.geodatabase";
-//                String networkName = "myNetDataset_ND";
-
                 String locatorPath = "/ArcGIS/SWJTU/locator/locator32/v101/locator32.loc";
                 String networkPath = "/ArcGIS/SWJTU/dataR/mydatabase.geodatabase";
                 String networkName = "myNetDataset_ND";
                 try {
                     mLocator = Locator.createLocalLocator(extern + locatorPath);
                 } catch (Exception e) {
-                    // 加载失败时调用popToast;
-                    // popToast("Error while initializing :" + e.getMessage(),
-                    // true);
                     e.printStackTrace();
                 }
 
@@ -459,12 +430,6 @@ public class ShortRoadActivity extends AppCompatActivity {
         // 坐标转换
         Point mapPoint = (Point) GeometryEngine.project(wgspoint,
                 SpatialReference.create(4326), mMapView.getSpatialReference());
-
-//        PictureMarkerSymbol locationSymbol = new PictureMarkerSymbol(this
-//                .getResources().getDrawable(R.drawable.location));
-//        // 图层的创建
-//        Graphic graphic = new Graphic(mapPoint, locationSymbol);
-//        gLayerPos.addGraphic(graphic);
 
         // 在当前位置画小圆点
         Graphic graphic = new Graphic(mapPoint, new SimpleMarkerSymbol(

@@ -33,7 +33,7 @@ public class AboutActivity extends AppCompatActivity {
     @SuppressLint("NewApi")
     private void initView() {
         webView = (WebView) findViewById(R.id.webView);
-        setTitle("快速链接(V"+getVersionName(this)+")");
+        setTitle("快速链接");
 
         settings = webView.getSettings();
         settings.setJavaScriptEnabled(true); //如果访问的页面中有Javascript，则WebView必须设置支持Javascript

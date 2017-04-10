@@ -63,13 +63,6 @@ public class LocationService extends Service{
             return;
         }
 
-//		}else if(providers.contains(LocationManager.NETWORK_PROVIDER)){
-//			Toast.makeText(LocService.this,"开始NETWORK定位",Toast.LENGTH_LONG).show();
-//			provider = LocationManager.NETWORK_PROVIDER;
-//		}else{
-//			Toast.makeText(LocService.this,"不能定位",Toast.LENGTH_LONG).show();
-//		}
-
         loc = locMag.getLastKnownLocation(provider);
 
         // 监听器//实现实时定位
